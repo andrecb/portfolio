@@ -1,15 +1,30 @@
 "use client";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
+
 import { motion } from "framer-motion";
-import { SiWhatsapp } from "react-icons/si";
 import { useTranslations } from "next-intl";
+import { SiWhatsapp } from "react-icons/si";
 
 export default function WhatsAppButton() {
   const t = useTranslations();
 
   const phoneNumber = "5512991843391";
-  const message = t("whatsappButton");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent("Olá, gostaria de conversar sobre uma ideia!")}`;
+
+  const trackWhatsAppClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const contactType = event.currentTarget.getAttribute("data-contact");
+    if (contactType && typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "contact_click", {
+        contact_type: contactType,
+      });
+    }
+  };
 
   return (
     <motion.a
@@ -32,9 +47,16 @@ export default function WhatsAppButton() {
       whileHover={{
         scale: 1.1,
         boxShadow: "0 8px 30px rgba(37, 211, 102, 0.4)",
-        transition: { type: "spring", stiffness: 700, damping: 25, duration: 0.15 },
+        transition: {
+          type: "spring",
+          stiffness: 700,
+          damping: 25,
+          duration: 0.15,
+        },
       }}
       whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+      onClick={trackWhatsAppClick}
+      data-contact="whatsapp-floating"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t("whatsappButton")}
@@ -71,7 +93,7 @@ export default function WhatsAppButton() {
           delay: 0.5,
         }}
       />
-      
+
       {/* Ícone */}
       <motion.div
         className="relative z-10"
@@ -83,4 +105,3 @@ export default function WhatsAppButton() {
     </motion.a>
   );
 }
-

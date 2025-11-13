@@ -23,11 +23,21 @@ export default function Header() {
           transition={{
             opacity: { delay: 0.05, duration: 0.25, ease: [0.4, 0, 0.2, 1] },
             x: { delay: 0.05, duration: 0.25, ease: [0.4, 0, 0.2, 1] },
-            default: { type: "spring", stiffness: 800, damping: 30, duration: 0.1 },
+            default: {
+              type: "spring",
+              stiffness: 800,
+              damping: 30,
+              duration: 0.1,
+            },
           }}
-          whileHover={{ 
+          whileHover={{
             scale: 1.05,
-            transition: { type: "spring", stiffness: 700, damping: 25, duration: 0.15 }
+            transition: {
+              type: "spring",
+              stiffness: 700,
+              damping: 25,
+              duration: 0.15,
+            },
           }}
         >
           {t("headerTitle")}

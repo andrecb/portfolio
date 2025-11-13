@@ -1,6 +1,13 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
+
+import { motion } from "framer-motion";
 import { Code, Mail } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -26,39 +33,13 @@ import Header from "@/components/Header";
 export default function Home() {
   const t = useTranslations();
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.05,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    },
-  };
-
-  const imageVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.4,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    },
+  const trackContactClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const contactType = event.currentTarget.getAttribute("data-contact");
+    if (contactType && typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "contact_click", {
+        contact_type: contactType,
+      });
+    }
   };
 
   return (
@@ -88,7 +69,15 @@ export default function Home() {
               boxShadow:
                 "0 0 20px rgba(59, 130, 246, 0.2), 0 0 40px rgba(60, 9, 108, 0.2)",
             }}
-            whileHover={{ scale: 1.05, transition: { type: "spring", stiffness: 700, damping: 25, duration: 0.15 } }}
+            whileHover={{
+              scale: 1.05,
+              transition: {
+                type: "spring",
+                stiffness: 700,
+                damping: 25,
+                duration: 0.15,
+              },
+            }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <Image
@@ -361,21 +350,28 @@ export default function Home() {
                 type: "spring",
                 stiffness: 400,
                 damping: 17,
+                default: {
+                  type: "spring",
+                  stiffness: 800,
+                  damping: 30,
+                  duration: 0.1,
+                },
               }}
               whileHover={{
                 scale: 1.02,
                 y: -2,
                 backgroundColor: "var(--hover-background)",
                 boxShadow: "0 8px 30px rgba(60, 9, 108, 0.2)",
-                transition: { type: "spring", stiffness: 700, damping: 25, duration: 0.15 },
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 800,
-                damping: 30,
-                duration: 0.1,
+                transition: {
+                  type: "spring",
+                  stiffness: 700,
+                  damping: 25,
+                  duration: 0.15,
+                },
               }}
               whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
+              onClick={trackContactClick}
+              data-contact="whatsapp"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -412,21 +408,28 @@ export default function Home() {
                 type: "spring",
                 stiffness: 400,
                 damping: 17,
+                default: {
+                  type: "spring",
+                  stiffness: 800,
+                  damping: 30,
+                  duration: 0.1,
+                },
               }}
               whileHover={{
                 scale: 1.02,
                 y: -2,
                 backgroundColor: "var(--hover-background)",
                 boxShadow: "0 8px 30px rgba(60, 9, 108, 0.2)",
-                transition: { type: "spring", stiffness: 700, damping: 25, duration: 0.15 },
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 800,
-                damping: 30,
-                duration: 0.1,
+                transition: {
+                  type: "spring",
+                  stiffness: 700,
+                  damping: 25,
+                  duration: 0.15,
+                },
               }}
               whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
+              onClick={trackContactClick}
+              data-contact="email"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -466,20 +469,27 @@ export default function Home() {
                 type: "spring",
                 stiffness: 400,
                 damping: 17,
+                default: {
+                  type: "spring",
+                  stiffness: 800,
+                  damping: 30,
+                  duration: 0.1,
+                },
               }}
               whileHover={{
                 scale: 1.1,
                 backgroundColor: "var(--hover-background)",
                 boxShadow: "0 8px 30px rgba(60, 9, 108, 0.2)",
-                transition: { type: "spring", stiffness: 700, damping: 25, duration: 0.15 },
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 800,
-                damping: 30,
-                duration: 0.1,
+                transition: {
+                  type: "spring",
+                  stiffness: 700,
+                  damping: 25,
+                  duration: 0.15,
+                },
               }}
               whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+              onClick={trackContactClick}
+              data-contact="github"
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("githubButton")}
@@ -505,20 +515,27 @@ export default function Home() {
                 type: "spring",
                 stiffness: 400,
                 damping: 17,
+                default: {
+                  type: "spring",
+                  stiffness: 800,
+                  damping: 30,
+                  duration: 0.1,
+                },
               }}
               whileHover={{
                 scale: 1.1,
                 backgroundColor: "var(--hover-background)",
                 boxShadow: "0 8px 30px rgba(60, 9, 108, 0.2)",
-                transition: { type: "spring", stiffness: 700, damping: 25, duration: 0.15 },
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 800,
-                damping: 30,
-                duration: 0.1,
+                transition: {
+                  type: "spring",
+                  stiffness: 700,
+                  damping: 25,
+                  duration: 0.15,
+                },
               }}
               whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
+              onClick={trackContactClick}
+              data-contact="linkedin"
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("linkedinButton")}
@@ -542,7 +559,6 @@ export default function Home() {
           </p>
         </div>
       </motion.footer>
-
     </main>
   );
 }

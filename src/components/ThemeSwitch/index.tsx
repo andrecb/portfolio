@@ -21,10 +21,20 @@ export default function ThemeSwitch() {
         y: -2,
         backgroundColor: "var(--hover-background)",
         boxShadow: "0 4px 20px rgba(60, 9, 108, 0.2)",
-        transition: { type: "spring", stiffness: 700, damping: 25, duration: 0.15 },
+        transition: {
+          type: "spring",
+          stiffness: 700,
+          damping: 25,
+          duration: 0.15,
+        },
       }}
       whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
-      transition={{ type: "spring", stiffness: 800, damping: 30, duration: 0.1 }}
+      transition={{
+        type: "spring",
+        stiffness: 800,
+        damping: 30,
+        duration: 0.1,
+      }}
       aria-label="Toggle theme"
     >
       <AnimatePresence mode="wait" initial={false}>
