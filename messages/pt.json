@@ -1,0 +1,23 @@
+{
+  "greeting": "Olá! 👋",
+  "namePrefix": "Eu sou o",
+  "name": "André Barros",
+  "description": "Sou desenvolvedor especializado em criar soluções modernas, eficientes e bem estruturadas. Com mais de 10 anos de experiência na área de tecnologia, tenho expertise em desenvolvimento web e integração de sistemas, sempre buscando unir tecnologia, desempenho e uma excelente experiência para o usuário.",
+  "projectMessage": "Conte comigo para trocar ideias, entender suas necessidades e transformar boas ideias em projetos incríveis. Vamos conversar!",
+  "contact": "Contato",
+  "contactTitle": "Entre em contato",
+  "phone": "Telefone",
+  "headerTitle": "André Barros",
+  "whatsappButton": "Falar no WhatsApp",
+  "emailButton": "Enviar e-mail",
+  "githubButton": "Ver GitHub",
+  "linkedinButton": "Ver LinkedIn",
+  "whatsapp": "WhatsApp",
+  "email": "E-mail",
+  "phoneNumber": "+55 12 99184-3391",
+  "emailAddress": "contato@andrebarros.dev",
+  "technologiesTitle": "Tecnologias",
+  "frontend": "Frontend",
+  "backend": "Backend",
+  "footerRights": "Todos os direitos reservados"
+}
