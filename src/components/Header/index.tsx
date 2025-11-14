@@ -2,42 +2,42 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 import LanguageSwitch from "@/components/LanguageSwitch";
 import ThemeSwitch from "@/components/ThemeSwitch";
 
 export default function Header() {
   const t = useTranslations();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <motion.header
-      className="w-full py-4"
+      className={`fixed top-0 left-0 right-0 w-full py-4 z-50 transition-all duration-500 ease-in-out ${
+        isScrolled
+          ? "backdrop-blur-lg bg-glass-header shadow-sm"
+          : "bg-transparent"
+      }`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="flex items-center justify-between">
+      <div className="container mx-auto px-4 flex items-center justify-between">
         <motion.span
-          className="text-lg font-medium"
+          className="text-lg font-medium transition-transform hover:scale-105"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{
             opacity: { delay: 0.05, duration: 0.25, ease: [0.4, 0, 0.2, 1] },
             x: { delay: 0.05, duration: 0.25, ease: [0.4, 0, 0.2, 1] },
-            default: {
-              type: "spring",
-              stiffness: 800,
-              damping: 30,
-              duration: 0.1,
-            },
-          }}
-          whileHover={{
-            scale: 1.05,
-            transition: {
-              type: "spring",
-              stiffness: 700,
-              damping: 25,
-              duration: 0.15,
-            },
           }}
         >
           {t("headerTitle")}

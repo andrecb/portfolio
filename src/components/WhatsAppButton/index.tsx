@@ -30,14 +30,7 @@ export default function WhatsAppButton() {
   return (
     <motion.a
       href={whatsappUrl}
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 rounded-full cursor-pointer shadow-2xl"
-      style={{
-        backgroundColor: "#25D366",
-        color: "#ffffff",
-        transition: "all 0.1s ease-out",
-        right: "1.5rem",
-        bottom: "1.5rem",
-      }}
+      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 rounded-full cursor-pointer shadow-2xl bg-[#25D366] text-white transition-all hover:scale-110 active:scale-95 hover:shadow-[0_8px_30px_rgba(37,211,102,0.4)]"
       initial={{ opacity: 0, scale: 0, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{
@@ -47,17 +40,6 @@ export default function WhatsAppButton() {
         stiffness: 300,
         damping: 20,
       }}
-      whileHover={{
-        scale: 1.1,
-        boxShadow: "0 8px 30px rgba(37, 211, 102, 0.4)",
-        transition: {
-          type: "spring",
-          stiffness: 700,
-          damping: 25,
-          duration: 0.15,
-        },
-      }}
-      whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
       onClick={trackWhatsAppClick}
       data-contact="whatsapp-floating"
       target="_blank"
@@ -66,10 +48,7 @@ export default function WhatsAppButton() {
     >
       {/* Efeito de pulso - usando animação customizada mais lenta */}
       <div className="absolute inset-0 rounded-full bg-[#25D366] animate-pulse-slow opacity-75" />
-      <div
-        className="absolute inset-0 rounded-full bg-[#25D366] animate-pulse-slow opacity-50"
-        style={{ animationDelay: "1.5s" }}
-      />
+      <div className="absolute inset-0 rounded-full bg-[#25D366] animate-pulse-slow-delayed opacity-50" />
 
       {/* Ícone */}
       <motion.div
