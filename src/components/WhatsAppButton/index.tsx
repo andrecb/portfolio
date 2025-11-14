@@ -35,6 +35,8 @@ export default function WhatsAppButton() {
         backgroundColor: "#25D366",
         color: "#ffffff",
         transition: "all 0.1s ease-out",
+        right: "1.5rem",
+        bottom: "1.5rem",
       }}
       initial={{ opacity: 0, scale: 0, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -62,37 +64,11 @@ export default function WhatsAppButton() {
       rel="noopener noreferrer"
       aria-label={t("whatsappButton")}
     >
-      {/* Efeito de pulso */}
-      <motion.div
-        className="absolute inset-0 rounded-full"
-        style={{
-          backgroundColor: "#25D366",
-        }}
-        animate={{
-          scale: [1, 1.5, 1.5],
-          opacity: [0.7, 0, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeOut",
-        }}
-      />
-      <motion.div
-        className="absolute inset-0 rounded-full"
-        style={{
-          backgroundColor: "#25D366",
-        }}
-        animate={{
-          scale: [1, 1.3, 1.3],
-          opacity: [0.5, 0, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeOut",
-          delay: 0.5,
-        }}
+      {/* Efeito de pulso - usando animação customizada mais lenta */}
+      <div className="absolute inset-0 rounded-full bg-[#25D366] animate-pulse-slow opacity-75" />
+      <div
+        className="absolute inset-0 rounded-full bg-[#25D366] animate-pulse-slow opacity-50"
+        style={{ animationDelay: "1.5s" }}
       />
 
       {/* Ícone */}

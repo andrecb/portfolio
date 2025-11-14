@@ -37,6 +37,21 @@
     margin: 0 auto;
     padding: 0 20px;
   }
+
+  @keyframes pulse-slow {
+    0% {
+      opacity: 0.75;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.5);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-out infinite;
+  }
 }
 
 body {
