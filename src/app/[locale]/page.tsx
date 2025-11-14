@@ -3,7 +3,8 @@
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
-    dataLayer?: unknown[];
+    // biome-ignore lint/complexity/noBannedTypes: dataLayer type is defined by @next/third-parties
+    dataLayer?: Object[];
   }
 }
 

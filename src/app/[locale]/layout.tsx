@@ -1,6 +1,6 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { getMessages } from "next-intl/server";
 import Providers from "@/components/Providers";
 import WhatsAppButton from "@/components/WhatsAppButton";
