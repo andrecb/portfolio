@@ -19,5 +19,9 @@
   "technologiesTitle": "Tecnologias",
   "frontend": "Frontend",
   "backend": "Backend",
-  "footerRights": "Todos os direitos reservados"
+  "footerRights": "Todos os direitos reservados",
+  "notFoundTitle": "404",
+  "notFoundSubtitle": "Ops! Página não encontrada",
+  "notFoundDescription": "Parece que essa página decidiu tirar férias! 😅 Mas não se preocupe, vamos te ajudar a voltar ao caminho certo.",
+  "notFoundButton": "Voltar para o início"
 }
