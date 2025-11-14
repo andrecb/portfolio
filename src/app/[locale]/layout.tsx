@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { getMessages } from "next-intl/server";
 import Providers from "@/components/Providers";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -43,19 +43,7 @@ export default async function LocaleLayout({
           __html: `document.documentElement.lang = "${locale === "pt" ? "pt-BR" : "en"}";`,
         }}
       />
-      {/* Google Analytics */}
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-MRS3VW9JY8"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-MRS3VW9JY8');
-        `}
-      </Script>
+      <GoogleAnalytics gaId="G-MRS3VW9JY8" />
       <Providers messages={messages} locale={locale}>
         {children}
         <WhatsAppButton />
