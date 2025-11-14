@@ -38,6 +38,7 @@ export default async function LocaleLayout({
   return (
     <>
       <script
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: Necessário para atualizar lang dinamicamente
         dangerouslySetInnerHTML={{
           __html: `document.documentElement.lang = "${locale === "pt" ? "pt-BR" : "en"}";`,
         }}

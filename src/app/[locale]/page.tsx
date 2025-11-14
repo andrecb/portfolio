@@ -322,7 +322,7 @@ export default function Home() {
           </motion.h2>
 
           <motion.p
-            className="text-lg font-thin opacity-80 text-center mb-8"
+            className="text-lg font-light opacity-80 text-center mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.25, duration: 0.25 }}
